@@ -83,6 +83,16 @@ loyaltylion.activities.approve('review', '1001')
 loyaltylion.activities.decline('review', '1001')
 ```
 
+### Customers
+
+Get a list of customers
+
+```ruby
+loyaltylion.customers.get
+# or...
+loyaltylion.customers.get('test@example.com')
+```
+
 ### Changelog
 
 * v1.0.0 - overhaul client API, bring in-line with v2 LoyaltyLion API
