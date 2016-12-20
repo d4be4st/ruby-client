@@ -23,10 +23,15 @@ module LoyaltyLion
       LoyaltyLion::Activity.new(self)
     end
 
+    def customers
+      LoyaltyLion::Customer.new(self)
+    end
+
     def request(opts)
       method = opts[:method] || :get
       path = opts[:path]
       body = opts[:body] || {}
+      query = opts[:query] || {}
       headers = {
         'user-agent' => "LoyaltyLion Ruby v#{LoyaltyLion::VERSION}",
       }
@@ -42,7 +47,8 @@ module LoyaltyLion
           :password => secret,
         },
         :headers => headers,
-        :body => body.empty? ? nil : body
+        :body => body.empty? ? nil : body,
+        :query => query.empty? ? nil : query,
       )
 
       if res.code >= 200 && res.code < 300
